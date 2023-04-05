@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  A Food Ordering App. Built with Django.
+  A Modular Home website. Built with Django.
 </p>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -24,7 +24,7 @@
 
 ## Introduction
 
-An interactive app to find restaurants and order food according to location. The users can search for food according to their favorite dishes, restaurants, and place. Crave is a progressive Web app (PWA) built using Django, Google place Search API, and Geospatial Data Abstraction
+An interactive app to find Modualr Homes. The users can search for food according to their favorite Designs and contact the owners for more details, and place. Casa is a progressive Web app (PWA) built using Django.
 ## Deployed on Linode 
 The app is hosted on a shared CPU with Linode Server, Please allow 10-15 seconds for it to send you the account activation Email and Registration Email.
 
@@ -34,7 +34,6 @@ The app is hosted on a shared CPU with Linode Server, Please allow 10-15 seconds
     <tr>
       <th scope="col">Front End</th>
       <th scope="col">Back End </th>
-      <th scope="col">APIs</th>
       <th scope="col">DataBase</th>
       <th scope="col">Infrastructure</th>               
     </tr>
@@ -43,22 +42,15 @@ The app is hosted on a shared CPU with Linode Server, Please allow 10-15 seconds
     <tr>
       <th scope="row">HTML</th>
       <td>Python(django)</td>
-      <td></td>
       <td>Postgresql</td>
       <td>Nginx</td>                
     </tr>
     <tr>
       <th scope="row">JS</th>
-      <td></td>
-      <td></td>
-      <td></td>
       <td>Gunicorn</td>                             
     </tr>
     <tr>
-      <th scope="row">Bootstrap</th>
-      <td></td>
-      <td></td>
-      <td></td>  
+      <th scope="row">Bootstrap</th> 
     </tr>               
   </tbody>
 </table>
