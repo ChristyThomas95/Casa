@@ -43,21 +43,21 @@ The app is hosted on a shared CPU with Linode Server, Please allow 10-15 seconds
     <tr>
       <th scope="row">HTML</th>
       <td>Python(django)</td>
-      <td>Google Maps Api</td>
+      <td></td>
       <td>Postgresql</td>
       <td>Nginx</td>                
     </tr>
     <tr>
       <th scope="row">JS</th>
       <td></td>
-      <td>PayPal</td>
+      <td></td>
       <td></td>
       <td>Gunicorn</td>                             
     </tr>
     <tr>
       <th scope="row">Bootstrap</th>
       <td></td>
-      <td>GDAL</td>
+      <td></td>
       <td></td>  
     </tr>               
   </tbody>
@@ -65,14 +65,13 @@ The app is hosted on a shared CPU with Linode Server, Please allow 10-15 seconds
 
 ## Features
 
-
-* User Activation & Order placement Emails to both user and vendors
-* Vendor and User Dashboards
+* User Can Search for Modular Homes
+* User Registration and Login
 * Vendor can set operating Hours
-* Order Tracking For user and vendor
+* User can request for the modular homes they like
 * Location Based search
-* Food Based search
-* vendors can track their payments and revenues
+* Model Based Search
+* Chat Bot
 
 <p align="center">
 
@@ -83,12 +82,7 @@ The app is hosted on a shared CPU with Linode Server, Please allow 10-15 seconds
 - Follow the [Django Guide](https://www.djangoproject.com/) for getting started building a project with Django
 - Clone or download the repo
 - `Pip` to install dependencies
-- You will need to sign up for API keys with Paypal and Google Cloud and set them to process environment variables:
-- You have to install the latest GDAl according to your operating system
-                 
-                 
-
-
+  
 ## OutPut
 To see the Website live [Click here](https://djangocasa.com/)                  
  
