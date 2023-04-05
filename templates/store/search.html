@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static%}
+
+
+{% block content %}
+{% load humanize %}
+
+<!-- Banner start -->
+<div class="sub-banner overview-bgi">
+    <div class="container breadcrumb-area">
+        <div class="breadcrumb-areas">
+            <h1>Search Results</h1>
+            <ul class="breadcrumbs">
+                <li><a href="{% url 'home'%}">Home</a></li>
+                <li class="active">Search</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Banner end -->
+
+<!-- Search box 3 start -->
+<div class="search-box-3 sb-7 bg-active">
+    <div class="container">
+        <div class="search-area-inner">
+            <div class="search-contents">
+                <form method="GET" action={% url 'search' %}>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="model">
+                                    <option disabled="disabled" selected="selected">Select Model</option>
+                                    {% for model in model_search %}
+                                    <option value="{{ model}}">{{ model }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="city">
+                                    <option disabled="disabled" selected="selected">Select Location</option>
+                                    {% for city in city_search %}
+                                    <option value="{{ city}}">{{ city }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="floors">
+                                    <option disabled="disabled" selected="selected">Select Floors</option>
+                                    {% for floors in floors_search %}
+                                    <option value="{{ floors}}">{{ floors }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <button class="btn btn-block button-theme btn-md">
+                                    <i class="fa fa-search"></i>Find
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Search box 3 end -->
+
+<!-- Featured car start -->
+<div class="featured-car content-area">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title">
+            <h1>Here's your <span>Results</span></h1>
+            
+        </div>
+        <div class="row">
+            {% for design in designs %}
+            <div class="col-lg-4 col-md-6">
+                <div class="car-box">
+                    <div class="car-thumbnail">
+                        <a href="car-details.html" class="car-img">
+                            <div class="tag">For Sale</div>
+                            <img class="d-block w-100" src="{{design.design_photo.url}}" alt="design" style="min-height: 262px; max-height: 262px;">
+                        </a>
+                        <div class="carbox-overlap-wrapper">
+                            <div class="overlap-box">
+                                <div class="overlap-btns-area">
+                                    <div class="car-magnify-gallery">
+                                        <a href="{{design.design_photo.url}}" class="overlap-btn">
+                                            <i class="fa fa-expand"></i>
+                                            <img class="hidden" src="{{design.design_photo.url}}">
+                                        </a>
+                                        {% if design.design_photo_1 %}
+                                        <a href="{{design.design_photo_1.url}}" class="hidden">
+                                            <img class="hidden" src="{{design.design_photo_1.url}}">
+                                        </a>
+                                        {% endif %}
+                                        {% if design.design_photo_2 %}
+                                        <a href="{{design.design_photo_2.url}}" class="hidden">
+                                            <img class="hidden" src="{{design.design_photo_2.url}}">
+                                        </a>
+                                        {% endif %}
+                                        {% if design.design_photo_3 %}
+                                        <a href="{{design.design_photo_3.url}}" class="hidden">
+                                            <img class="hidden" src="{{design.design_photo_3.url}}">
+                                        </a>
+                                        {% endif %}
+                                        {% if design.design_photo_4 %}
+                                        <a href="{{design.design_photo_4.url}}" class="hidden">
+                                            <img class="hidden" src="{{design.design_photo_4.url}}">
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <h1 class="title">
+                            <a href="{% url 'design_detail' design.id %}">{{design.design_title}}</a>
+                        </h1>
+                        <div class="location">
+                            <a href="{% url 'design_detail' design.id %}">
+                                <i class="flaticon-pin"></i>{{ design.province }}, {{ design.city}}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer clearfix">
+                        <div class="pull-left ratings days">
+                            <p class="cartype">{{ design.model}}</p>
+                        </div>
+                        <div class="pull-right">
+                            <p class="price">${{design.price | intcomma}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Featured car end -->
+{% endblock%}

@@ -1,0 +1,393 @@
+
+{% extends 'base.html' %}
+{% block title %} | Home {% endblock %}
+{% load static %}
+{% block content %}
+{% load humanize %}
+
+
+
+<!-- Banner start -->
+<div class="banner" id="banner">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner banner-slider-inner text-center">
+            <div class="carousel-item banner-max-height active item-bg">
+                <img class="d-block w-100 h-100" src="{% static 'img/img2.jpg'%}" alt="banner">
+                <div class="carousel-content container banner-info-2 bi-2 text-left">
+                    <h3>Wow Factor Standard</h3>
+                    <h5>Allow us to guide you through the innovative stress<br>
+                        free approach in finding your dream house.</h5>
+                    <a href="{% url 'contact'%}" class="btn btn-lg btn-theme">Read more</a>
+                </div>
+            </div>
+            <div class="carousel-item banner-max-height item-bg">
+                <img class="d-block w-100 h-100" src="{% static 'img/bantwo.jpg' %}" alt="banner">
+                <div class="carousel-content container banner-info-2 bi-2 text-left">
+                    <h3>Explore Your Dream House</h3>
+                    <h5>Choose from a staged approach to your standard design,<br>
+                        or complete the entire package at once and receive a discount</h5>
+                    <a href="#" class="btn btn-lg btn-theme">Read more</a>
+                </div>
+            </div>
+            <div class="carousel-item banner-max-height item-bg">
+                <img class="d-block w-100 h-100" src="{% static  'img/banthree.jpg'%}" alt="banner">
+                <div class="carousel-content container banner-info-2 bi-2 text-left">
+                    <h3>Start Your Design Today</h3>
+                    <h5>Get started on your design today with Built Casa<br>
+                       Stress free approach in finding your dream house.</h5>
+                    <a href="{% url 'contact'%}" class="btn btn-lg btn-theme">Read more</a>
+                </div>
+            </div>
+        </div>
+        <!-- Search box 3 start -->
+        <div class="search-box-4 sb-8">
+            <form action="{% url 'search' %}" method="">
+                <div class="form-group">
+                    <input type="text" name="keyword" placeholder="Search by name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <select class="form-control search-fields" name="model">
+                        <option selected="true" disabled="disabled">Model</option>
+                        {% for model in model_search %}
+                        <option value="{{model}}">{{model}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control search-fields" name="city">
+                        <option selected="true" disabled="disabled">Location</option>
+                        {% for city in city_search %}
+                        <option value="{{city}}">{{city}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <select class="form-control search-fields" name="floors">
+                        <option selected="true" disabled="disabled">Select Number of Floors</option>
+                        {% for floors in floors_search %}
+                        <option value="{{floors}}">{{floors}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="range-slider clearfix">
+                                <label>Price</label>
+                                <div data-min="0" data-max="150000"  data-min-name="min_price" data-max-name="max_price" data-unit="USD" class="range-slider-ui ui-slider" aria-disabled="false"></div>
+                                <div class="clearfix"></div>
+                            </div>
+                <div class="form-group">
+                    <button class="btn btn-block button-theme btn-md">
+                        <i class="fa fa-search"></i> Search
+                    </button>
+                </div>
+            </form>
+        </div>
+        <!-- Search box 3 end -->
+        <a class="carousel-control-prev none-580" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="slider-mover-left" aria-hidden="true">
+                <i class="fa fa-angle-left"></i>
+            </span>
+        </a>
+        <a class="carousel-control-next none-580" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="slider-mover-right" aria-hidden="true">
+                <i class="fa fa-angle-right"></i>
+            </span>
+        </a>
+    </div>
+</div>
+<!-- Banner end -->
+
+<!-- Search box 2 end -->
+
+<!-- Featured car start -->
+<div class="featured-car content-area-5">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title">
+            <h1>Featured <span>Design</span></h1>
+            <p>Our Top Designs.</p>
+        </div>
+        <!-- Slick slider area start -->
+        <div class="slick-slider-area clearfix">
+            <div class="row slick-carousel" data-slick='{"slidesToShow": 3, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+                {% for design in featured_design  %}
+                <div class="slick-slide-item">
+                    <div class="car-box-3">
+                        <div class="car-thumbnail">
+                            <a href="{% url 'design_detail' design.id %}" class="car-img">
+                                <div class="tag-2">Featured</div>
+                                <div class="price-box">
+                                    
+                                    <span>${{design.price | intcomma}}</span>
+                                </div>
+                                <img class="d-block w-100" src="{{design.design_photo.url}}" alt="car" style="min-height: 262px; max-height: 262px;">
+                            </a>
+                            <div class="carbox-overlap-wrapper">
+                                <div class="overlap-box">
+                                    <div class="overlap-btns-area">
+                                        <div class="car-magnify-gallery">
+                                            <a href="{{design.design_photo.url}}" class="overlap-btn">
+                                                <i class="fa fa-expand"></i>
+                                                <img class="hidden" src="{{design.design_photo.url}}">
+                                            </a>
+                                            {% if design.design_photo_1 %}
+                                            <a href="{{design.design_photo_1.url}}" class="hidden">
+                                                <img class="hidden" src="{{design.design_photo_1.url}}">
+                                            </a>
+                                            {% endif %}
+                                            {% if design.design_photo_2 %}
+                                            <a href="{{design.design_photo_2.url}}" class="hidden">
+                                                <img class="hidden" src="{{design.design_photo_2.url}">
+                                            </a>
+                                            {% endif %}
+                                            {% if design.design_photo_3 %}
+                                            <a href="{{design.design_photo_3.url}}" class="hidden">
+                                                <img class="hidden" src="{{design.design_photo_3.url}}">
+                                            </a>
+                                            {% endif %}
+                                            {% if design.design_photo_4 %}
+                                            <a href="{{design.design_photo_4.url}}" class="hidden">
+                                                <img class="hidden" src="{{design.design_photo_4.url}}">
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <h1 class="title">
+                                <a href="{% url 'design_detail' design.id %}">{{ design.design_title }}</a>
+                            </h1>
+                            <div class="location">
+                                <a href="{% url 'design_detail' design.id %}">
+                                    <i class="flaticon-pin"></i>{{ design.province }}, {{ design.city}}
+                                </a>
+                            </div>
+                            <ul class="facilities-list clearfix">
+                                <li>{{design.color}}</li>
+                                <li>{{design.model}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>  
+              
+            <div class="slick-btn">
+                <div class="slick-prev slick-arrow-buton sab-4">
+                    <i class="fa fa-angle-left"></i>
+                </div>
+                <div class="slick-next slick-arrow-buton sab-3">
+                    <i class="fa fa-angle-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Featured car end -->
+
+<!-- Rent car start -->
+<div class="featured-car content-area">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title">
+            <h1>Contemporary<span> style</span></h1>
+            <p>Below list shows our most modern contemporary style models.</p>
+        </div>
+        <div class="row">
+            {% for design in all_designs %}
+            <div class="col-lg-4 col-md-6">
+                <div class="car-box">
+                    <div class="car-thumbnail">
+                        <a href="car-details.html" class="car-img">
+                            <div class="tag">For Sale</div>
+                            <img class="d-block w-100" src="{{design.design_photo.url}}" alt="design" style="min-height: 262px; max-height: 262px;">
+                        </a>
+                        <div class="carbox-overlap-wrapper">
+                            <div class="overlap-box">
+                                <div class="overlap-btns-area">
+                                    <div class="car-magnify-gallery">
+                                        <a href="{{design.design_photo.url}}" class="overlap-btn">
+                                            <i class="fa fa-expand"></i>
+                                            <img class="hidden" src="{{design.design_photo.url}}">
+                                        </a>
+                                        {% if design.design_photo_1 %}
+                                        <a href="{{design.design_photo_1.url}}" class="hidden">
+                                            <img class="hidden" src="{{design.design_photo_1.url}}">
+                                        </a>
+                                        {% endif %}
+                                        {% if design.design_photo_2 %}
+                                        <a href="{{design.design_photo_2.url}}" class="hidden">
+                                            <img class="hidden" src="{{design.design_photo_2.url}}">
+                                        </a>
+                                        {% endif %}
+                                        {% if design.design_photo_3 %}
+                                        <a href="{{design.design_photo_3.url}}" class="hidden">
+                                            <img class="hidden" src="{{design.design_photo_3.url}}">
+                                        </a>
+                                        {% endif %}
+                                        {% if design.design_photo_4 %}
+                                        <a href="{{design.design_photo_4.url}}" class="hidden">
+                                            <img class="hidden" src="{{design.design_photo_4.url}}">
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <h1 class="title">
+                            <a href="{% url 'design_detail' design.id %}">{{design.design_title}}</a>
+                        </h1>
+                        <div class="location">
+                            <a href="{% url 'design_detail' design.id %}">
+                                <i class="flaticon-pin"></i>{{ design.province }}, {{ design.city}}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer clearfix">
+                        <div class="pull-left ratings days">
+                            <p class="cartype">{{ design.model}}</p>
+                        </div>
+                        <div class="pull-right">
+                            <p class="price">${{design.price | intcomma}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Rent car end -->
+
+
+<!-- Our team start -->
+<div class="our-team content-area bg-grea-3">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title">
+            <h1>Meet the<span>Team</span></h1>
+            <p>Our team combines creative, technical, and creative talents.</p>
+        </div>
+        <!-- Slick slider area start -->
+        <div class="slick-slider-area clearfix">
+            <div class="row slick-carousel" data-slick='{"slidesToShow": 4, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+                {% for team in teams %}
+                <div class="slick-slide-item">
+                    <div class="team-1">
+                        <div class="photo">
+                            <a href="#">
+                                <img src="{{ team.photo.url}}" alt="team-1" class="img-fluid">
+                            </a>
+                            <div class="social-list clearfix">
+                                <a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a>
+                                <a href="#" class="google-bg"><i class="fa fa-google"></i></a>
+                            </div>
+                        </div>
+                        <div class="details">
+                            <h4><a href="team-detail.html">{{team.first_name}} {{team.last_name}}</a></h4>
+                            <h5>{{team.role}}</h5>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Our team end -->
+
+<!-- Intro section start -->
+<div class="intro-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-8 col-sm-12">
+                <div class="intro-text">
+                    <h3>Do You Have Questions ?</h3>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <a href="{% url 'contact'%}" class="btn btn-md">Get in Touch</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Intro section end -->
+
+<!--Overview Modal -->
+<div class="car-model-2">
+    <div class="modal fade" id="carOverviewModal" tabindex="-1" role="dialog" aria-labelledby="carOverviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title" id="carOverviewModalLabel">
+                        <h4>Explore Your Dream Car</h4>
+                        <h5><i class="flaticon-pin"></i> 123 Kathal St. Tampa City,</h5>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row modal-raw">
+                        <div class="col-lg-6 modal-left">
+                            <div class="item active">
+                                <img src="img/car-13.jpg" alt="best-car" class="img-fluid modalLabel-1">
+                                <img src="img/car-14.jpg" alt="best-car" class="img-fluid modalLabel-2">
+                                <div class="sobuz">
+                                    <div class="price-box" style="padding-bottom: 5px;">
+                                        <span class="del-2">$1050.00</span>
+                                    </div>
+                                    <div class="">
+                                        <a href="car-details.html" class="btn btn-md btn-round btn-theme">Convertible</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 modal-right">
+                            <div class="modal-right-content">
+                                <section>
+                                    <h3>Features</h3>
+                                    <div class="features">
+                                        <ul class="bullets">
+                                            <li>Cruise Control</li>
+                                            <li>Airbags</li>
+                                            <li>Air Conditioning</li>
+                                            <li>Alarm System</li>
+                                            <li>Audio Interface</li>
+                                            <li>CDR Audio</li>
+                                            <li>Seat Heating</li>
+                                            <li>ParkAssist</li>
+                                        </ul>
+                                    </div>
+                                </section>
+                                <section>
+                                    <h3>Overview</h3>
+                                    <ul class="bullets">
+                                        <li>Model</li>
+                                        <li>Year</li>
+                                        <li>Condition</li>
+                                        <li>Price</li>
+                                        <li>Audi</li>
+                                        <li>2020</li>
+                                        <li>Brand New</li>
+                                        <li>$178,000</li>
+                                    </ul>
+                                </section>
+                                <div class="description">
+                                    <h3>Description</h3>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+                                    <a href="car-details.html" class="btn btn-md btn-round btn-theme">Show Detail</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
