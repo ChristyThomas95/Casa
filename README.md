@@ -1,7 +1,7 @@
 <h1 align="center"> Casa Modular Homes</h1> <br>
 <p align="center">
   <a href="#">
-    <img alt=SurgeApp" title="SurgeApp" src="https://i.ibb.co/cx4fDrW/Crave.png" width="450">
+    <img alt=SurgeApp" title="SurgeApp" src="https://i.ibb.co/cQMTFm8/logo.png" width="450">
   </a>
 </p>
 
